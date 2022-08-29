@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Text Based Sentiment Analysis
+# Text Based Sentiment Analysis
 
-# # IMPORTING NECESSARY MODULES
+# IMPORTING NECESSARY MODULES
 
 
 
@@ -14,14 +14,14 @@ import matplotlib.pyplot as plt  # For Visualisation
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import seaborn as sns  # For Visualisation
 from bs4 import BeautifulSoup  # For Text Parsing
+import streamlit as st
 
 
 # # IMPORTING DATASET
 
 
 
-
-data = pd.read_csv('daisi\product-review-analysis\Reviews.csv')
+data = pd.read_csv("Reviews.csv")
 # data
 
 
@@ -208,48 +208,49 @@ clf=model.fit(vect_X,data['sentiment'])
 #clf.score(vect_X,data['sentiment'])*100
 
 
-# # PREDICTION
+# PREDICTION
 
 
-
-
-clf.predict(vectr.transform(['''Nice look and build quality with moderately fast everything such as refresh rate, display quality, sound, processing, gaming experience and many more ..
-I didn't find any lagging or heating issue..And battery health I won't say great but I'll take that
-
-Only cons I can say about it is camera.. sharpening picture a little much at day light and low light photo you have to compromise.''']))
-
-
-
-
-
-clf.predict(vectr.transform(['''Phone has bugs , and screen quality is poor , Avoid realme. Gaming was just over hyped''']))
-
-
-
-
-
-clf.predict(vectr.transform(['''No lags found super speed and very good performance nice phone in this budget''']))
-
-
-
-
+comments = input("Enter the comments: ")
 def prediction(comments):
-    """
-    This function is used to get the prediction of a comment.
-
-    Parameters:
-    - comments (string) : Any comments from 
-
-    Return:
-    - object type : description
-    """
-    sentiment = 1
-    if (clf.predict(vectr.transform([comments]))):
-        return sentiment
+    if (int(clf.predict(comments))):
+        print("Positive Comments😊")
     else:
-        sentiment = 0
-    return sentiment
+        print("Negative Comments😞")
 
+@st.cache
+def st_ui():
+    st.title("Reviews/Comments Analysis")
+
+    comment = st.text_area("Enter your review/comment")
+
+    if (st.button("Submit")):
+
+        if (prediction(comment) == "Positive Comment😊"):
+            st.write("Positive Comment➕")
+        else:
+            st.write("Negative Comment➖")
+    else:
+        st.write("Awaiting to submit comment...")
+
+
+if __name__ == "__main__":
+    st_ui()
+
+# print(clf.predict(vectr.transform(['''Nice look and build quality with moderately fast everything such as refresh rate, display quality, sound, processing, gaming experience and many more ..
+# I didn't find any lagging or heating issue..And battery health I won't say great but I'll take that Only cons I can say about it is camera.. sharpening picture a little much at day light and low light photo you have to compromise.'''])))
+
+
+
+
+
+# clf.predict(vectr.transform(['''Phone has bugs , and screen quality is poor , Avoid realme. Gaming was just over hyped''']))
+
+
+
+
+
+# clf.predict(vectr.transform(['''No lags found super speed and very good performance nice phone in this budget''']))
 
 
 
