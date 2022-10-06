@@ -3,7 +3,7 @@ from bbctest import retrieve_doc
 import pandas as pd
 import time
 
-data=pd.read_csv('news-article recommender\headings.csv')
+data=pd.read_csv('./headings.csv')
 
 message = st.text_input('Type a Heading to get relevant matches: ')
 # number = st.slider('Choose the Number of Articles to Retrieve', 0, 50, 5)
