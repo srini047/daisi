@@ -40,7 +40,7 @@ import glob
 # data = pd.DataFrame(docs, columns = ['Category','Heading','Article'])
 # data.head()
 
-data = pd.read_csv('news-article recommender\headings.csv')
+data = pd.read_csv('./headings.csv')
 
 vectorizer = TfidfVectorizer()
 vectors = vectorizer.fit_transform(data["Heading"].values) # .values: convert DataFrame columns into List.List of data will be transformed into tfidf vector
