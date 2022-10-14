@@ -216,7 +216,6 @@ sqlparse==0.4.2
 squarify==0.4.3
 srsly==2.4.4
 stack-data==0.5.0
-streamlit==1.13.0
 string-color==1.2.3
 sympy==1.11.1
 tabulate==0.8.10
